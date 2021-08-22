@@ -2,6 +2,7 @@ package com.example.android.politicalpreparedness.election.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android.politicalpreparedness.databinding.ListItemElectionBinding
@@ -43,6 +44,16 @@ class ElectionListAdapter(private val clickListener: ElectionListener) :
 }
 
 //TODO: Create ElectionDiffCallback
+class ElectionDiffCallback : DiffUtil.ItemCallback<Election>() {
+    override fun areItemsTheSame(oldItem: Election, newItem: Election): Boolean {
+        return oldItem.id == newItem.id
+    }
+
+    override fun areContentsTheSame(oldItem: Election, newItem: Election): Boolean {
+        return oldItem == newItem
+    }
+
+}
 
 //TODO: Create ElectionListener
 class ElectionListener(val clickListener: (electionId: Int) -> Unit) {
