@@ -11,4 +11,17 @@
 
     <!-- TODO: Add necessary styles -->
 
+    <style name="list_item_title">
+        <item name="android:layout_marginStart">@dimen/layout_margin</item>
+        <item name="android:layout_marginEnd">@dimen/layout_margin</item>
+        <item name="android:textSize">@dimen/large_text_size</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="list_item_caption">
+        <item name="android:layout_marginStart">@dimen/layout_margin</item>
+        <item name="android:layout_marginEnd">@dimen/layout_margin</item>
+        <item name="android:textSize">@dimen/small_text_size</item>
+    </style>
+
 </resources>
