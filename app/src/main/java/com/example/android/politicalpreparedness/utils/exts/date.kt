@@ -5,7 +5,7 @@ import java.util.*
 
 const val DefaultDateFormat: String = "EEE MMM dd HH:mm:ss z yyyy"
 
-fun Date.dateToString(format: String): String {
+fun Date.dateToString(format: String = DefaultDateFormat): String {
     // simple date formatter
     val dateFormatter = SimpleDateFormat(format, Locale.getDefault())
     return dateFormatter.format(this)

@@ -38,6 +38,7 @@
             app:layout_constraintBottom_toTopOf="@+id/baseline_1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            android:text="@{election.name}"
             tools:text="Election name"
             style="@style/list_item_title" />
 
@@ -46,6 +47,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             tools:text="Election date"
+            app:text="@{election.electionDay}"
             app:layout_constraintBottom_toTopOf="@+id/baseline_2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

@@ -6,10 +6,13 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android.politicalpreparedness.databinding.ListItemElectionBinding
+import com.example.android.politicalpreparedness.network.models.Division
 import com.example.android.politicalpreparedness.network.models.Election
 import com.example.android.politicalpreparedness.utils.exts.DefaultDateFormat
 import com.example.android.politicalpreparedness.utils.exts.dateToString
+import com.squareup.moshi.JsonClass
 
+@JsonClass(generateAdapter = true)
 class ElectionListAdapter(private val clickListener: ElectionListener) :
     ListAdapter<Election, ElectionListAdapter.ElectionViewHolder>(ElectionDiffCallback()) {
 
@@ -29,8 +32,9 @@ class ElectionListAdapter(private val clickListener: ElectionListener) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(election: Election, listener: ElectionListener) {
-            binding.electionName.text = election.name
-            binding.electionDate.text = election.electionDay.dateToString(DefaultDateFormat)
+            binding.election = election
+            binding.clickListener = listener
+            binding.executePendingBindings()
         }
 
         companion object {
@@ -56,6 +60,6 @@ class ElectionDiffCallback : DiffUtil.ItemCallback<Election>() {
 }
 
 //TODO: Create ElectionListener
-class ElectionListener(val clickListener: (electionId: Int) -> Unit) {
-    fun onClick(election: Election) = clickListener(election.id)
+class ElectionListener(val clickListener: (election: Election) -> Unit) {
+    fun onClick(election: Election) = clickListener(election)
 }

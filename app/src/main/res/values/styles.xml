@@ -7,9 +7,22 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+
+        <item name="buttonStyle">@style/AppButton</item>
     </style>
 
     <!-- TODO: Add necessary styles -->
+
+    <style name="AppButton" parent="Widget.AppCompat.Button.Borderless.Colored">
+        <item name="android:background">@color/colorPrimary</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="header">
+        <item name="android:layout_margin">@dimen/layout_margin</item>
+        <item name="android:textSize">@dimen/xlarge_textSize</item>
+        <item name="android:textStyle">bold</item>
+    </style>
 
     <style name="list_item_title">
         <item name="android:layout_marginStart">@dimen/layout_margin</item>

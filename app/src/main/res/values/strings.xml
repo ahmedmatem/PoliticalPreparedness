@@ -3,5 +3,16 @@
     <string name="app_name">Political Preparedness</string>
 
     <!-- TODO: Add necessary string values -->
+    <string name="logo_img_description">Ballot image</string>
+    <string name="profile_img_description">Profile image</string>
+    <string name="twitter_description">Twitter link</string>
+    <string name="facebook_description">Facebook link</string>
+    <string name="www_description">Internet link</string>
+
+    <string name="upcoming_elections_header">Upcoming Elections</string>
+    <string name="saved_elections_header">Saved Elections</string>
+
+    <string name="upcoming_elections_btn">Upcoming Elections</string>
+    <string name="find_representatives_btn">Find my Representatives</string>
 
 </resources>
