@@ -14,7 +14,6 @@ import com.example.android.politicalpreparedness.databinding.FragmentElectionBin
 import com.example.android.politicalpreparedness.election.adapter.ElectionListAdapter
 import com.example.android.politicalpreparedness.election.adapter.ElectionListener
 import com.example.android.politicalpreparedness.network.models.Election
-import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ElectionsFragment : Fragment() {
 
@@ -28,7 +27,9 @@ class ElectionsFragment : Fragment() {
     ): View? {
 
         //TODO: Add ViewModel values and create ViewModel
-        viewModel = ViewModelProvider(this).get(ElectionsViewModel::class.java)
+        viewModel = ViewModelProvider(this, ElectionsViewModel.Factory(requireContext())).get(
+            ElectionsViewModel::class.java
+        )
 
         //TODO: Add binding values
         val binding = FragmentElectionBinding.inflate(inflater)
@@ -55,7 +56,7 @@ class ElectionsFragment : Fragment() {
         binding.upcomingElectionsRecycler.adapter = adapter
 
         //TODO: Populate recycler adapters
-        viewModel.upcomingElectionList.observe(viewLifecycleOwner, Observer<List<Election>> {
+        viewModel.upcomingElections.observe(viewLifecycleOwner, Observer<List<Election>> {
             it?.let {
                 adapter.submitList(it)
             }

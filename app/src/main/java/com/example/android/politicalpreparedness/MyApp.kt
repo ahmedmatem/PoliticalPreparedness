@@ -16,7 +16,7 @@ class MyApp: Application() {
          */
         val myModule = module {
             viewModel {
-                ElectionsViewModel()
+                ElectionsViewModel(androidContext())
             }
         }
 
