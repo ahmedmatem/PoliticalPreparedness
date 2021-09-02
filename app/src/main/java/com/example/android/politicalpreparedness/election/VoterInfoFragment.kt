@@ -5,6 +5,7 @@ import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.navArgs
 import com.example.android.politicalpreparedness.database.ElectionDatabase
 import com.example.android.politicalpreparedness.databinding.FragmentVoterInfoBinding
 import com.example.android.politicalpreparedness.utils.exts.setDisplayHomeAsUpEnabled
@@ -13,6 +14,7 @@ import com.example.android.politicalpreparedness.utils.exts.setTitle
 class VoterInfoFragment : Fragment() {
 
     private lateinit var viewModel: VoterInfoViewModel
+    private val args: VoterInfoFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -26,6 +28,8 @@ class VoterInfoFragment : Fragment() {
                 ElectionDatabase.getInstance(requireContext()).electionDao
             )
         ).get(VoterInfoViewModel::class.java)
+
+        viewModel.populateVoterInfo(args.argElectionId, args.argDivision.state)
 
         //TODO: Add binding values
         val binding = FragmentVoterInfoBinding.inflate(layoutInflater)

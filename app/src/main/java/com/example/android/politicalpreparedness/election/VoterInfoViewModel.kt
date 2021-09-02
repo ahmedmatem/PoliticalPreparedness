@@ -2,6 +2,7 @@ package com.example.android.politicalpreparedness.election
 
 import androidx.lifecycle.*
 import com.example.android.politicalpreparedness.database.ElectionDao
+import com.example.android.politicalpreparedness.network.CivicsApi
 import com.example.android.politicalpreparedness.network.models.VoterInfoResponse
 import kotlinx.coroutines.launch
 import java.lang.Exception
@@ -14,13 +15,14 @@ class VoterInfoViewModel(private val dataSource: ElectionDao) : ViewModel() {
     val voterInfo: LiveData<VoterInfoResponse> = _voterInfo
 
     //TODO: Add var and methods to populate voter info
-    fun populateVoterInfo(electionId: Int) {
-        try {
-            viewModelScope.launch {
+    fun populateVoterInfo(electionId: Int, address: String) {
+        viewModelScope.launch {
+            try {
+                val voterInfoResponse = CivicsApi.retrofitService.getVoterInfo(electionId, address)
+                _voterInfo.value = voterInfoResponse
+            } catch (e: Exception) {
 
             }
-        } catch (e: Exception){
-
         }
     }
 
