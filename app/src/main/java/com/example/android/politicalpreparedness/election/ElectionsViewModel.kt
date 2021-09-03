@@ -3,11 +3,9 @@ package com.example.android.politicalpreparedness.election
 import android.content.Context
 import androidx.lifecycle.*
 import com.example.android.politicalpreparedness.database.ElectionDatabase
-import com.example.android.politicalpreparedness.network.CivicsApi
 import com.example.android.politicalpreparedness.network.models.Election
 import com.example.android.politicalpreparedness.repository.ElectionRepository
 import kotlinx.coroutines.launch
-import java.lang.Exception
 import java.lang.IllegalArgumentException
 
 //TODO: Construct ViewModel and provide election datasource
@@ -22,8 +20,8 @@ class ElectionsViewModel(context: Context) : ViewModel() {
         }
     }
 
-    private val _navigateToSelectedElectionDetails = MutableLiveData<Election>()
-    val navigateToSelectedElectionDetails: LiveData<Election> = _navigateToSelectedElectionDetails
+    private val _navigateToVoterInfo = MutableLiveData<Election>()
+    val navigateToVoterInfo: LiveData<Election> = _navigateToVoterInfo
 
     //TODO: Create live data val for upcoming elections
 
@@ -36,8 +34,8 @@ class ElectionsViewModel(context: Context) : ViewModel() {
     val upcomingElections = repository.elections
     val followedElections = repository.followedElections
 
-    fun displaySelectedElectionInfo(election: Election) {
-        _navigateToSelectedElectionDetails.value = election
+    fun displayVoterInfo(election: Election) {
+        _navigateToVoterInfo.value = election
     }
 
     class Factory(private val context: Context) : ViewModelProvider.Factory {

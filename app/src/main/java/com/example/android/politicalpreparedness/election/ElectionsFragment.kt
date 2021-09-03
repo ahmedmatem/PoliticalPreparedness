@@ -1,13 +1,11 @@
 package com.example.android.politicalpreparedness.election
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.android.politicalpreparedness.databinding.FragmentElectionBinding
@@ -36,7 +34,7 @@ class ElectionsFragment : Fragment() {
         binding.lifecycleOwner = this
 
         //TODO: Link elections to voter info
-        viewModel.navigateToSelectedElectionDetails.observe(viewLifecycleOwner, Observer {
+        viewModel.navigateToVoterInfo.observe(viewLifecycleOwner, Observer {
             it?.let {
                 findNavController().navigate(
                     ElectionsFragmentDirections.actionElectionsFragmentToVoterInfoFragment(
@@ -45,25 +43,38 @@ class ElectionsFragment : Fragment() {
                     )
                 )
             }
+
         })
 
         //TODO: Initiate recycler adapters
-        val adapter = ElectionListAdapter(ElectionListener {
+        val upcomingElectionsAdapter = ElectionListAdapter(ElectionListener {
             it?.let {
-                viewModel.displaySelectedElectionInfo(it)
+                viewModel.displayVoterInfo(it)
             }
         })
-        binding.upcomingElectionsRecycler.adapter = adapter
+
+        val followedElectionsAdapter = ElectionListAdapter(ElectionListener {
+            it?.let {
+                viewModel.displayVoterInfo(it)
+            }
+        })
+
+        binding.upcomingElectionsRecycler.adapter = upcomingElectionsAdapter
+        binding.followedElectionsRecycler.adapter = followedElectionsAdapter
 
         //TODO: Populate recycler adapters
         viewModel.upcomingElections.observe(viewLifecycleOwner, Observer<List<Election>> {
             it?.let {
-                adapter.submitList(it)
+                upcomingElectionsAdapter.submitList(it)
+            }
+        })
+        viewModel.followedElections.observe(viewLifecycleOwner, Observer<List<Election>> {
+            it?.let {
+                followedElectionsAdapter.submitList(it)
             }
         })
 
         return binding.root
-
     }
 
     //TODO: Refresh adapters when fragment loads
