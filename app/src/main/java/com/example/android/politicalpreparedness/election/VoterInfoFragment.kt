@@ -14,7 +14,6 @@ import com.example.android.politicalpreparedness.utils.exts.setTitle
 class VoterInfoFragment : Fragment() {
 
     private lateinit var viewModel: VoterInfoViewModel
-    private val args: VoterInfoFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -22,14 +21,16 @@ class VoterInfoFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
+        val args: VoterInfoFragmentArgs by navArgs()
+
         //TODO: Add ViewModel values and create ViewModel
         viewModel = ViewModelProvider(
             this, VoterInfoViewModel.Factory(
-                ElectionDatabase.getInstance(requireContext()).electionDao
+                args, ElectionDatabase.getInstance(requireContext()).electionDao
             )
         ).get(VoterInfoViewModel::class.java)
 
-        viewModel.populateVoterInfo(args.argElectionId, args.argDivision.state)
+        viewModel.populateVoterInfo()
 
         //TODO: Add binding values
         val binding = FragmentVoterInfoBinding.inflate(layoutInflater)
