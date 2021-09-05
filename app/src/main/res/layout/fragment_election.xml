@@ -13,7 +13,7 @@
         <!-- TODO: Add Upcoming Election Recycler and Header -->
         <TextView
             android:id="@+id/upcoming_header"
-            style="@style/header"
+            style="@style/TextViewHeader"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@string/upcoming_elections_header"
@@ -34,7 +34,7 @@
         <!-- TODO: Add Saved Election Recycler and Header -->
         <TextView
             android:id="@+id/saved_header"
-            style="@style/header"
+            style="@style/TextViewHeader"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/layout_margin"

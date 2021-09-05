@@ -21,6 +21,15 @@ class VoterInfoViewModel(
     private val _hasVoterInfo = MutableLiveData<Boolean>()
     val hasVoterInfo: LiveData<Boolean> = _hasVoterInfo
 
+    private val _votingLocationsUrl = MutableLiveData<String>()
+    val votingLocationsUrl: LiveData<String> = _votingLocationsUrl
+
+    private val _ballotInformationUrl = MutableLiveData<String>()
+    val ballotInformationUrl: LiveData<String> = _ballotInformationUrl
+
+    private val _correspondenceAddress = MutableLiveData<String>()
+    val correspondenceAddress: LiveData<String> = _correspondenceAddress
+
     init {
         populateVoterInfo()
     }
@@ -32,15 +41,11 @@ class VoterInfoViewModel(
 
         if (state.isNotEmpty()) {
             viewModelScope.launch {
-                try {
-                    val electionId = navArgs.argElectionId
-                    val address = "$country,$state"
-                    val voterInfoResponse = CivicsApi.retrofitService.getVoterInfo(electionId, address)
-                    _voterInfo.value = voterInfoResponse
-                    _hasVoterInfo.value = true
-                } catch (e: Exception) {
-                    _hasVoterInfo.value = false
-                }
+                val electionId = navArgs.argElectionId
+                val address = "$country,$state"
+                val voterInfoResponse = CivicsApi.retrofitService.getVoterInfo(electionId, address)
+                _voterInfo.value = voterInfoResponse
+                _hasVoterInfo.value = true
             }
         } else {
             _hasVoterInfo.value = false
@@ -48,6 +53,20 @@ class VoterInfoViewModel(
     }
 
     //TODO: Add var and methods to support loading URLs
+    fun loadVotingLocations() {
+        _votingLocationsUrl.value =
+            _voterInfo.value?.state?.get(0)?.electionAdministrationBody?.electionInfoUrl
+    }
+
+    fun loadBallotInformation() {
+        _ballotInformationUrl.value =
+            _voterInfo.value?.state?.get(0)?.electionAdministrationBody?.ballotInfoUrl
+    }
+
+    fun correspondenceAddress() {
+        _correspondenceAddress.value =
+            _voterInfo.value?.state?.get(0)?.electionAdministrationBody?.correspondenceAddress?.toFormattedString()
+    }
 
     //TODO: Add var and methods to save and remove elections to local database
     //TODO: cont'd -- Populate initial state of save button to reflect proper action based on election saved status

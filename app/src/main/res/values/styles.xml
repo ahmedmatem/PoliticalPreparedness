@@ -18,23 +18,32 @@
         <item name="android:textColor">@color/white</item>
     </style>
 
-    <style name="header">
+    <style name="TextViewHeader">
         <item name="android:layout_margin">@dimen/layout_margin</item>
         <item name="android:textSize">@dimen/xlarge_textSize</item>
         <item name="android:textStyle">bold</item>
     </style>
 
-    <style name="list_item_title">
+    <style name="ListItemTitle">
         <item name="android:layout_marginStart">@dimen/layout_margin</item>
         <item name="android:layout_marginEnd">@dimen/layout_margin</item>
         <item name="android:textSize">@dimen/large_text_size</item>
         <item name="android:textStyle">bold</item>
     </style>
 
-    <style name="list_item_caption">
+    <style name="ListItemCaption">
         <item name="android:layout_marginStart">@dimen/layout_margin</item>
         <item name="android:layout_marginEnd">@dimen/layout_margin</item>
         <item name="android:textSize">@dimen/small_text_size</item>
+    </style>
+
+    <style name="TextViewLink">
+        <item name="android:background">@color/colorAccent</item>
+        <item name="android:padding">@dimen/default_padding</item>
+        <item name="android:layout_marginStart">@dimen/layout_margin</item>
+        <item name="android:layout_marginEnd">@dimen/layout_margin</item>
+        <item name="android:layout_marginTop">@dimen/small_margin</item>
+        <item name="android:textAppearance">@style/TextAppearance.AppCompat.Medium</item>
     </style>
 
 </resources>

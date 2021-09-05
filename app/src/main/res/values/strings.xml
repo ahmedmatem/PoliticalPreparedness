@@ -11,8 +11,11 @@
 
     <string name="upcoming_elections_header">Upcoming Elections</string>
     <string name="saved_elections_header">Saved Elections</string>
+    <string name="election_information_title">Election Information</string>
 
     <string name="upcoming_elections_btn">Upcoming Elections</string>
     <string name="find_representatives_btn">Find my Representatives</string>
+
+    <string name="state_correspondence">State Correspondence</string>
 
 </resources>

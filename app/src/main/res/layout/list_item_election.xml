@@ -40,7 +40,7 @@
             app:layout_constraintStart_toStartOf="parent"
             android:text="@{election.name}"
             tools:text="Election name"
-            style="@style/list_item_title" />
+            style="@style/ListItemTitle" />
 
         <TextView
             android:id="@+id/election_date"
@@ -51,6 +51,6 @@
             app:layout_constraintBottom_toTopOf="@+id/baseline_2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            style="@style/list_item_caption" />
+            style="@style/ListItemCaption" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
