@@ -29,7 +29,7 @@
             android:layout_marginStart="@dimen/layout_margin"
             android:layout_marginEnd="@dimen/layout_margin"
             android:layout_marginBottom="@dimen/default_margin"
-            android:text="@string/upcoming_elections_btn"
+            android:text="@string/upcoming_elections_btn_text"
             app:layout_constraintBottom_toTopOf="@+id/representative_button"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
@@ -43,7 +43,7 @@
             android:layout_marginStart="@dimen/layout_margin"
             android:layout_marginEnd="@dimen/layout_margin"
             android:layout_marginBottom="@dimen/layout_margin"
-            android:text="@string/find_representatives_btn"
+            android:text="@string/find_representatives_btn_text"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />

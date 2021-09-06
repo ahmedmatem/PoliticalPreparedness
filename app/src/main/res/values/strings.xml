@@ -13,9 +13,16 @@
     <string name="saved_elections_header">Saved Elections</string>
     <string name="election_information_title">Election Information</string>
 
-    <string name="upcoming_elections_btn">Upcoming Elections</string>
-    <string name="find_representatives_btn">Find my Representatives</string>
+    <string name="upcoming_elections_btn_text">Upcoming Elections</string>
+    <string name="find_representatives_btn_text">Find my Representatives</string>
+    <string name="follow_election_btn_text">Follow Election</string>
+    <string name="unfollow_election_btn_text">Unfollow Election</string>
 
     <string name="state_correspondence">State Correspondence</string>
+
+    <string name="voting_locations_link">Voting Locations</string>
+    <string name="ballot_information_link">Ballot Information</string>
+    
+    <string name="voter_info_error">There is no information for this election.</string>
 
 </resources>

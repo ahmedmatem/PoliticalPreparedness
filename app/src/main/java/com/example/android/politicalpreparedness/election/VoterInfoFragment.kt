@@ -11,10 +11,12 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
+import com.example.android.politicalpreparedness.R
 import com.example.android.politicalpreparedness.database.ElectionDatabase
 import com.example.android.politicalpreparedness.databinding.FragmentVoterInfoBinding
 import com.example.android.politicalpreparedness.utils.exts.setDisplayHomeAsUpEnabled
 import com.example.android.politicalpreparedness.utils.exts.setTitle
+import com.google.android.material.snackbar.Snackbar
 
 class VoterInfoFragment : Fragment() {
 
@@ -30,9 +32,7 @@ class VoterInfoFragment : Fragment() {
 
         //TODO: Add ViewModel values and create ViewModel
         viewModel = ViewModelProvider(
-            this, VoterInfoViewModel.Factory(
-                args, ElectionDatabase.getInstance(requireContext()).electionDao
-            )
+            this, VoterInfoViewModel.Factory(args, requireContext())
         ).get(VoterInfoViewModel::class.java)
 
         //TODO: Add binding values
@@ -47,7 +47,12 @@ class VoterInfoFragment : Fragment() {
         Hint: You will need to ensure proper data is provided from previous fragment.
          */
         viewModel.hasVoterInfo.observe(viewLifecycleOwner, Observer { hasInfo ->
-            displayVoterInfo(hasInfo, binding)
+            if (hasInfo) {
+                showVoterInfo(binding)
+            } else {
+                hideVoterInfo(binding)
+                Snackbar.make(requireView(), R.string.voter_info_error, Snackbar.LENGTH_LONG).show()
+            }
         })
 
         //TODO: Handle loading of URLs
@@ -74,12 +79,18 @@ class VoterInfoFragment : Fragment() {
         startActivity(Intent(ACTION_VIEW, Uri.parse(url)))
     }
 
-    private fun displayVoterInfo(hasInfo: Boolean, binding: FragmentVoterInfoBinding) {
-        if(hasInfo) {
-            binding.addressGroup.visibility = View.VISIBLE
-        } else {
-            binding.addressGroup.visibility = View.GONE
-        }
+    private fun showVoterInfo(binding: FragmentVoterInfoBinding) {
+        binding.stateHeader.visibility = View.VISIBLE
+        binding.stateLocations.visibility = View.VISIBLE
+        binding.stateBallot.visibility = View.VISIBLE
+        binding.followElectionButton.visibility = View.VISIBLE
+    }
+
+    private fun hideVoterInfo(binding: FragmentVoterInfoBinding) {
+        binding.stateHeader.visibility = View.GONE
+        binding.stateLocations.visibility = View.GONE
+        binding.stateBallot.visibility = View.GONE
+        binding.followElectionButton.visibility = View.GONE
     }
 
 }

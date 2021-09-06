@@ -12,10 +12,8 @@ import kotlinx.coroutines.withContext
 class ElectionRepository(private val database: ElectionDatabase) {
     private val apiService: CivicsApiService = CivicsApi.retrofitService
 
-    lateinit var voterInfo: VoterInfoResponse
-
     val elections: LiveData<List<Election>> = database.electionDao.getAll()
-    val followedElections: LiveData<List<Election>> = database.electionDao.getFollowed()
+    val followedElections: LiveData<List<Election>> = database.electionDao.getFollowedElections()
 
     suspend fun refreshElections() {
         withContext(Dispatchers.IO) {
@@ -24,21 +22,33 @@ class ElectionRepository(private val database: ElectionDatabase) {
         }
     }
 
-    suspend fun getVoterInfo(electionId: Int, address: String) {
-        withContext(Dispatchers.IO) {
-            voterInfo = apiService.getVoterInfo(electionId, address)
+    suspend fun getVoterInfo(electionId: Int, address: String): VoterInfoResponse {
+        return withContext(Dispatchers.IO) {
+            apiService.getVoterInfo(electionId, address)
         }
     }
 
-    suspend fun saveElection(election: Election) {
+    suspend fun followElection(electionId: Int) {
         withContext(Dispatchers.IO) {
-            database.electionDao.insertElection(election)
+            database.electionDao.followElection(electionId)
+        }
+    }
+
+    suspend fun unfollowElection(electionId: Int) {
+        withContext(Dispatchers.IO) {
+            database.electionDao.unfollowElection(electionId)
         }
     }
 
     suspend fun deleteElection(election: Election) {
         withContext(Dispatchers.IO) {
             database.electionDao.delete(election)
+        }
+    }
+
+    suspend fun isElectionFollowed(electionId: Int): Boolean {
+        return withContext(Dispatchers.IO) {
+            database.electionDao.isElectionFollowed(electionId)
         }
     }
 }

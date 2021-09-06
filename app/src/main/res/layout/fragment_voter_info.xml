@@ -9,6 +9,8 @@
         <variable
             name="viewModel"
             type="com.example.android.politicalpreparedness.election.VoterInfoViewModel" />
+
+        <import type="android.view.View" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -58,10 +60,10 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:onClick="@{() -> viewModel.loadVotingLocations()}"
+            android:text="@string/voting_locations_link"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/state_header"
-            tools:text="Voting locations" />
+            app:layout_constraintTop_toBottomOf="@id/state_header" />
 
         <!-- TODO: Add click binding to open web URL -->
         <!-- TODO: Add visual styling and content -->
@@ -71,15 +73,16 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:onClick="@{() -> viewModel.loadBallotInformation()}"
+            android:text="@string/ballot_information_link"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/state_locations"
-            tools:text="Ballot information" />
+            app:layout_constraintTop_toBottomOf="@id/state_locations" />
 
         <androidx.constraintlayout.widget.Group
             android:id="@+id/address_group"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:visibility="@{viewModel.hasCorrespondenceAddress ? View.VISIBLE : View.GONE}"
             app:constraint_referenced_ids="state_correspondence_header,address" />
 
         <!-- TODO: Add visual styling and content -->
@@ -102,6 +105,20 @@
             app:layout_constraintStart_toStartOf="@id/election_date"
             app:layout_constraintTop_toBottomOf="@id/state_correspondence_header"
             tools:text="Formatted correspondence address" />
+
+        <Button
+            android:id="@+id/follow_election_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:onClick="@{() -> viewModel.toggleFollowElection()}"
+            android:layout_marginStart="@dimen/layout_margin"
+            android:layout_marginEnd="@dimen/layout_margin"
+            android:layout_marginBottom="@dimen/layout_margin"
+            android:text="@{viewModel.isElectionFollowed() ? @string/unfollow_election_btn_text : @string/follow_election_btn_text}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="Follow Election" />
 
         <!-- TODO: Add button to save election to Room -->
 

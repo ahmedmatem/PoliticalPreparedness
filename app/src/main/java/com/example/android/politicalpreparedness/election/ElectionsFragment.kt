@@ -42,8 +42,8 @@ class ElectionsFragment : Fragment() {
                         it.division
                     )
                 )
+                viewModel.navigateToVoterInfoCompleted()
             }
-
         })
 
         //TODO: Initiate recycler adapters

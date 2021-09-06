@@ -38,6 +38,10 @@ class ElectionsViewModel(context: Context) : ViewModel() {
         _navigateToVoterInfo.value = election
     }
 
+    fun navigateToVoterInfoCompleted() {
+        _navigateToVoterInfo.value = null
+    }
+
     class Factory(private val context: Context) : ViewModelProvider.Factory {
         override fun <T : ViewModel?> create(modelClass: Class<T>): T {
             if (modelClass.isAssignableFrom(ElectionsViewModel::class.java)) {
