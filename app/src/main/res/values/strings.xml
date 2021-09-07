@@ -24,5 +24,13 @@
     <string name="ballot_information_link">Ballot Information</string>
     
     <string name="voter_info_error">There is no information for this election.</string>
-
+    
+    <string name="representative_search_title">Representative Search</string>
+    <string name="address_line_1">Address line 1</string>
+    <string name="address_line_2">Address line 2</string>
+    <string name="city">City</string>
+    <string name="zip">Zip</string>
+    <string name="find_representatives_btn">Find my Representatives</string>
+    <string name="use_location_btn">Use my Location</string>
+    <string name="my_representatives_title">My Representatives</string>
 </resources>
