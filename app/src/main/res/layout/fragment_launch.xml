@@ -30,14 +30,14 @@
             android:layout_marginEnd="@dimen/layout_margin"
             android:layout_marginBottom="@dimen/default_margin"
             android:text="@string/upcoming_elections_btn_text"
-            app:layout_constraintBottom_toTopOf="@+id/representative_button"
+            app:layout_constraintBottom_toTopOf="@+id/representatives_button"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
 
         <!-- TODO: Add Button to navigate to representatives. -->
         <Button
-            android:id="@+id/representative_button"
+            android:id="@+id/representatives_button"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/layout_margin"
