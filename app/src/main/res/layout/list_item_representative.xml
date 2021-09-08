@@ -46,29 +46,32 @@
             app:srcCompat="@drawable/ic_profile" />
 
         <TextView
-            android:id="@+id/representative_line_1"
+            android:id="@+id/office_name"
             style="@style/ListItemTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="@{representative.office.name}"
             app:layout_constraintBottom_toTopOf="@+id/guideline"
             app:layout_constraintStart_toEndOf="@+id/representative_photo"
             tools:text="Three line item" />
 
         <TextView
-            android:id="@+id/representative_caption_1"
+            android:id="@+id/person_name"
             style="@style/ListItemCaption"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:text="@{representative.official.name}"
             app:layout_constraintBottom_toTopOf="@+id/guideline2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/representative_photo"
             tools:text="Secondary line text" />
 
         <TextView
-            android:id="@+id/representative_caption_2"
+            android:id="@+id/party_name"
             style="@style/ListItemCaption"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:text="@{representative.official.party}"
             app:layout_constraintBottom_toTopOf="@+id/guideline3"
             app:layout_constraintEnd_toStartOf="@+id/www_icon"
             app:layout_constraintStart_toEndOf="@+id/representative_photo"

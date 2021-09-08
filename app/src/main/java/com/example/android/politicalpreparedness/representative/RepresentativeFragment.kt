@@ -8,10 +8,12 @@ import android.view.*
 import android.view.inputmethod.InputMethodManager
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.android.politicalpreparedness.R
 import com.example.android.politicalpreparedness.databinding.FragmentRepresentativeBinding
 import com.example.android.politicalpreparedness.network.models.Address
+import com.example.android.politicalpreparedness.representative.adapter.RepresentativeListAdapter
 import java.util.Locale
 
 class DetailFragment : Fragment() {
@@ -32,18 +34,24 @@ class DetailFragment : Fragment() {
     ): View? {
 
         //TODO: Establish bindings
-        val binding: FragmentRepresentativeBinding =
-            DataBindingUtil.inflate(inflater, R.layout.fragment_representative, container, false)
+        val binding = FragmentRepresentativeBinding.inflate(inflater)
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
 
         //TODO: Define and assign Representative adapter
+        val adapter = RepresentativeListAdapter()
+        binding.representativesList.adapter = adapter
 
         //TODO: Populate Representative adapter
+        viewModel.representatives.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                adapter.submitList(it)
+            }
+        })
 
         //TODO: Establish button listeners for field and location search
 
-        return null
+        return binding.root
 
     }
 
