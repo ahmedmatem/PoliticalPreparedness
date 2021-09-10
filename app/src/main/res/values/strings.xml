@@ -33,4 +33,7 @@
     <string name="find_representatives_btn">Find my Representatives</string>
     <string name="use_location_btn">Use my Location</string>
     <string name="my_representatives_title">My Representatives</string>
+
+    <string name="permission_denied_explanation">LocationPermission has not been granted.</string>
+    <string name="settings">Settings</string>
 </resources>

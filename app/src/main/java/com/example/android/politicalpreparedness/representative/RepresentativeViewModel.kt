@@ -48,6 +48,10 @@ class RepresentativeViewModel: ViewModel() {
      */
 
     //TODO: Create function get address from geo location
+    fun updateAddress(address: Address){
+        _address.value = address
+        getRepresentatives() // populate representative list
+    }
 
     //TODO: Create function to get address from individual fields
 
