@@ -12,6 +12,7 @@ import android.os.Bundle
 import android.provider.Settings
 import android.view.*
 import android.view.inputmethod.InputMethodManager
+import android.widget.AdapterView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.app.ActivityCompat
@@ -71,6 +72,7 @@ class DetailFragment : Fragment() {
 
         //TODO: Establish button listeners for field and location search
         binding.buttonSearch.setOnClickListener {
+            hideKeyboard()
             viewModel.getRepresentatives()
         }
 
@@ -80,6 +82,22 @@ class DetailFragment : Fragment() {
             } else {
                 requestLocationPermission()
             }
+        }
+
+        binding.state.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                viewModel.address.value?.state = binding.state.selectedItem.toString()
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                viewModel.address.value?.state = binding.state.selectedItem.toString()
+            }
+
         }
 
         return binding.root

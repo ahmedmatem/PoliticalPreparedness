@@ -39,6 +39,10 @@ class RepresentativeViewHolder private constructor(val binding: ListItemRepresen
 
         //TODO: Show social links ** Hint: Use provided helper methods
         //TODO: Show www link ** Hint: Use provided helper methods
+        item.official.channels?.let { showSocialLinks(it) }
+        item.official.urls?.let { showWWWLinks(it) }
+//        showSocialLinks(item.official.channels!!)
+//        showWWWLinks(item.official.urls!!)
 
         binding.executePendingBindings()
     }
